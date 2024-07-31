@@ -1,0 +1,16 @@
+---
+- name: Handling multiple flavours of Linux OS
+  hosts: all
+  tasks:
+    - name: Install git on Ubuntu servers
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+    - name: Install git on RHEL servers
+      yum:
+        name: git
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "RedHat"

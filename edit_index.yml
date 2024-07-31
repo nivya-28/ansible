@@ -1,0 +1,6 @@
+---
+- name: Edit the index.htm file
+  copy:
+    content: "Intelliq"
+    dest: /var/www/html/index.html
+...

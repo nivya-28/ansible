@@ -1,0 +1,8 @@
+---
+- name: Call child playbook
+  hosts: all
+  gather_facts: false
+  become: yes
+  tasks:
+    - name: Execute child playbook
+      include_tasks: playbook24.yml 

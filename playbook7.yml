@@ -1,0 +1,14 @@
+---
+- name: implementing playscope variables
+  hosts: all
+  vars:
+    - a: tomcat10
+    - b: present
+    - c: yes
+  tasks:
+    - name: install/unistall s/w apps
+      apt:
+        name: "{{a}}"
+        state: "{{b}}"
+        update_cache: "{{c}}"
+

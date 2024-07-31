@@ -1,0 +1,38 @@
+---
+- name: Configure apache2 on Ubuntu and httpd on RHEL servers
+  hosts: all
+  tasks:
+    - name: Install apache2 on Ubuntu servers
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+    - name: Install httpd on RHEL servers
+      yum:
+        name: httpd
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "RedHat"
+    - name: Edit the index.html file
+      copy:
+        content: "Intelliq"
+        dest: /var/www/html/index.html
+    - name: Restart apache2 on Ubuntu servers
+      service:
+        name: apache2
+        state: restarted
+      when: ansible_distribution == "Ubuntu"
+    - name: Restart httpd on RHEL servers
+      service:
+        name: httpd
+        state: restarted
+      when: ansible_distribution == "RedHat"
+    - name: Check respone on apache2/httpd on all servers
+      uri:
+        url: "{{item}}"
+      with_items:
+          - http://172.31.23.107
+          - http://172.31.27.53
+          - http://172.31.19.89
+          - http://172.31.26.130

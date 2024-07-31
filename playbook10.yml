@@ -1,0 +1,13 @@
+---
+- name: loops in ansible
+  hosts: all
+  tasks:
+    - name: install multiple s/w's
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      with_items:
+        - tree
+        - git
+        - maven

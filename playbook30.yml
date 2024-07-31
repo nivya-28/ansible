@@ -1,0 +1,8 @@
+---
+- name: clone git repo
+  hosts: all
+  tasks: 
+    - name: clone git
+      git:
+        repo: https://github.com/intelliqittrainings/Kubernetes_7_30pm.git
+        dest: /tmp/mygit
