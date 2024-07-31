@@ -1,0 +1,18 @@
+---
+- name: working on docker containers
+  hosts: all
+  tasks:
+    - name: create a tomee containers
+      docker_container:
+        name: appserver
+        image: tomee
+        ports: 
+          - 6060:8080
+    - name: stop the tomee  containers
+      docker_container:
+        name: appserver
+        state: stopped
+    - name: delete the tomee container
+      docker_container:
+        name: appserver
+        state: absent

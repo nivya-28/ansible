@@ -7,7 +7,7 @@
       user: 
         name: Anu
         password: nivya
-        uid: 1111
+        uid: 1114
         shell: /bin/bash
         comment: " A normal user"
         home: /tmp/Anu
