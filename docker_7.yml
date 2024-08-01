@@ -1,0 +1,20 @@
+---
+- name: create containers and mount volumes
+  hosts: all
+  tasks: 
+    - name: create a ubuntu container and mount/data as a volume
+      docker_container:
+         name: u1
+         image: ubuntu
+         interactive: yes
+         tty: true
+         volumes:
+           - /data
+    - name: create another ubuntu container and it should use the volume of u1 container
+      docker_container:
+          name: u2
+          image: ubuntu
+          interactive: yes
+          tty: yes
+          volumes_from:
+            - u1
